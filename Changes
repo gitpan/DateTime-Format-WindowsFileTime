@@ -1,0 +1,6 @@
+Revision history for Perl extension DateTime::Format::WindowsFileTime.
+
+0.01  Mon Jan 17 10:09:37 2005
+	- original version; created by h2xs 1.23 with options
+		-X DateTime::Format::WindowsFileTime
+
