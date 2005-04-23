@@ -5,7 +5,7 @@ use Math::BigInt;
 use 5.008005;
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub parse_datetime {
 	my($class, $winfiletime) = @_;
@@ -15,7 +15,7 @@ sub parse_datetime {
 	$winfiletime = "0x$winfiletime"; # prepend 0x so perl sees it as hex value
 	my $bint = Math::BigInt->new( $winfiletime );
 	$bint = $bint / 10000;           # was centi-nanoseconds, now it's not
-	$bint -= 11644455600000;         # the difference between epochs    
+	$bint -= 11644473600000;         # the difference between epochs    
 	my $seconds = $bint / 1000;      
 	my $dt = DateTime->from_epoch( epoch => $seconds->numify );
 	return $dt;
@@ -64,9 +64,11 @@ L<DateTime>
 
 Doug wrote the guts to the method, Jim just surrounded it with what h2xs pukes out, and published it.
 
+Thanks to Robert A. Lerche for finding a bug and recommending the fix.
+
 =head1 AUTHOR
 
-Jim, E<lt>jg.perl@thegarvin.comE<gt>, Doug, E<lt>df.cpan@thegarvin.comE<gt>
+Jim, E<lt>jg.perl@thegarvin.comE<gt>, Doug, E<lt>df.cpan@feuerbach.netE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
